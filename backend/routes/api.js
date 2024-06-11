@@ -1,51 +1,56 @@
+// backend/routes/api.js
 import express from 'express';
-import Star from '../models/Star.js';
-import Constellation from '../models/Constellation.js';
+import Card from '../models/Card.js';
 
 const router = express.Router();
 
-// Endpoint GET dla domyślnych danych
-router.get('/sky', (req, res) => {
-    const defaultData = {
-        date: new Date().toISOString().split('T')[0], // Dzisiaj
-        cloudiness: 5,
-        moonPhase: 'full',
-        precipitation: 'none',
-        fogDensity: 2
-    };
-    res.json(defaultData);
-});
-
-// Przykładowe endpointy
-router.post('/sky', (req, res) => {
-    const { date, cloudiness, moonPhase, precipitation, fogDensity } = req.body;
-    // Walidacja danych wejściowych
-    if (cloudiness < 0 || cloudiness > 10 || fogDensity < 0 || fogDensity > 10) {
-        return res.status(400).json({ error: 'Invalid input data' });
-    }
-    if (cloudiness === 0 && precipitation !== 'none') {
-        return res.status(400).json({ error: 'No precipitation allowed with clear sky' });
-    }
-    res.json({ date, cloudiness, moonPhase, precipitation, fogDensity });
-});
-
-router.post('/stars', async (req, res) => {
-    const { name, description, imageUrl, constellations, isLit } = req.body;
+// Endpoint do dodawania karty
+router.post('/cards', async (req, res) => {
     try {
-        const star = await Star.create({ name, description, imageUrl, constellations, isLit });
-        res.status(201).json(star);
+        const card = await Card.create(req.body);
+        res.status(201).json(card);
     } catch (error) {
-        res.status(500).json({ error: 'Error creating star' });
+        res.status(500).json({ error: 'Error creating card' });
     }
 });
 
-router.post('/constellations', async (req, res) => {
-    const { name, description, imageUrl, stars, isLit } = req.body;
+// Endpoint do pobierania kart
+router.get('/cards', async (req, res) => {
     try {
-        const constellation = await Constellation.create({ name, description, imageUrl, stars, isLit });
-        res.status(201).json(constellation);
+        const cards = await Card.findAll();
+        res.status(200).json(cards);
     } catch (error) {
-        res.status(500).json({ error: 'Error creating constellation' });
+        res.status(500).json({ error: 'Error fetching cards' });
+    }
+});
+
+// Endpoint do aktualizacji karty
+router.put('/cards/:id', async (req, res) => {
+    try {
+        const card = await Card.findByPk(req.params.id);
+        if (card) {
+            await card.update(req.body);
+            res.status(200).json(card);
+        } else {
+            res.status(404).json({ error: 'Card not found' });
+        }
+    } catch (error) {
+        res.status(500).json({ error: 'Error updating card' });
+    }
+});
+
+// Endpoint do usuwania karty
+router.delete('/cards/:id', async (req, res) => {
+    try {
+        const card = await Card.findByPk(req.params.id);
+        if (card) {
+            await card.destroy();
+            res.status(200).json({ message: 'Card deleted' });
+        } else {
+            res.status(404).json({ error: 'Card not found' });
+        }
+    } catch (error) {
+        res.status(500).json({ error: 'Error deleting card' });
     }
 });
 

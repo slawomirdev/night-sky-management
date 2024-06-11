@@ -3,21 +3,28 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Night Sky Management</title>
+    <title>Anki App</title>
+    <link
+            rel="stylesheet"
+            href="https://cdn.jsdelivr.net/npm/@picocss/pico@2/css/pico.min.css"
+    />
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
 <header>
-    <h1>Night Sky Management</h1>
+    <h1>Anki App</h1>
+    <nav>
+        <ul>
+            <li><a href="#" data-route="home">Home</a></li>
+            <li><a href="#" data-route="study">Study</a></li>
+            <li><a href="#" data-route="manage">Manage Cards</a></li>
+        </ul>
+    </nav>
 </header>
-<main>
-    <section id="controls">
-        Sky
-    </section>
-    <section id="display">
-       Scoreboard
-    </section>
+<main class="container">
+    <section id="app"></section>
 </main>
+<script src="router.js"></script>
 <script src="app.js"></script>
 </body>
 </html>
