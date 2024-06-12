@@ -1,10 +1,13 @@
 import express from 'express';
 import cors from 'cors';
+import dotenv from 'dotenv';
 import sequelize from './config/database.js';
 import apiRoutes from './routes/api.js';
 
+dotenv.config();
+
 const app = express();
-const port = 3000;
+const PORT = process.env.PORT || 3000;
 
 // Middlewares
 app.use(cors());
@@ -20,6 +23,6 @@ sequelize.sync()
         console.error('Unable to connect to the database:', err);
     });
 
-app.listen(port, () => {
-    console.log(`Server running at http://localhost:${port}`);
+app.listen(PORT, () => {
+    console.log(`Server running at http://localhost:${PORT}`);
 });

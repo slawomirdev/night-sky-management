@@ -30,8 +30,7 @@ const routes = {
             </div>
             <button type="submit" class="primary">Add Card</button>
         </form>
-        <button id="load-cards" class="secondary">Load Cards</button>
-        <div id="cards-container"></div>
+        <div id="cards-container" class="manage-container"></div>
     `
 };
 
