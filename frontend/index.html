@@ -6,7 +6,7 @@
     <title>Anki App</title>
     <link
             rel="stylesheet"
-            href="https://cdn.jsdelivr.net/npm/@picocss/pico@2/css/pico.min.css"
+            href="https://cdn.jsdelivr.net/npm/@picocss/pico@2.0.6/css/pico.min.css"
     />
     <link rel="stylesheet" href="styles.css">
 </head>
@@ -19,11 +19,20 @@
             <li><a href="#" data-route="study">Study</a></li>
             <li><a href="#" data-route="manage">Manage Cards</a></li>
         </ul>
+        <details class="dropdown">
+            <summary role="button" class="secondary">Theme</summary>
+            <ul>
+                <li><a href="#" data-theme-switcher="auto">Auto</a></li>
+                <li><a href="#" data-theme-switcher="light">Light</a></li>
+                <li><a href="#" data-theme-switcher="dark">Dark</a></li>
+            </ul>
+        </details>
     </nav>
 </header>
 <main class="container">
     <section id="app"></section>
 </main>
 <script type="module" src="js/main.js"></script>
+<script src="js/minimal-theme-switcher.js"></script>
 </body>
 </html>
