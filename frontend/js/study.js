@@ -24,7 +24,7 @@ function loadCardsForStudy(numCards) {
                 const selectedCards = cards.sort(() => 0.5 - Math.random()).slice(0, numCards);
                 selectedCards.forEach((card, index) => {
                     const cardElement = document.createElement('div');
-                    cardElement.classList.add('card');
+                    cardElement.classList.add('card-study');
                     cardElement.style.zIndex = selectedCards.length - index;
                     cardElement.innerHTML = `
                         <div class="card-inner">

@@ -36,16 +36,16 @@ export function setupManage() {
 
     function displayCard(card, container) {
         const cardElement = document.createElement('article');
-        cardElement.classList.add('manage-card');
+        cardElement.classList.add('card');
         cardElement.innerHTML = `
             <header>
                 <h3>${card.question}</h3>
-                <div>
-                    <button class="edit">Edit</button>
-                    <button class="delete">Delete</button>
-                </div>
             </header>
             <p>${card.answer}</p>
+            <footer class="grid">
+                <button class="primary edit">Edit</button>
+                <button class="secondary delete">Delete</button>
+            </footer>
         `;
         container.appendChild(cardElement);
 
