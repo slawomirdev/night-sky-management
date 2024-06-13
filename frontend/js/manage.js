@@ -35,7 +35,7 @@ export function setupManage() {
     }
 
     function displayCard(card, container) {
-        const cardElement = document.createElement('div');
+        const cardElement = document.createElement('article');
         cardElement.classList.add('manage-card');
         cardElement.innerHTML = `
             <header>
