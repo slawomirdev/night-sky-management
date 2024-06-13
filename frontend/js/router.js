@@ -3,8 +3,17 @@ import { setupManage } from './manage.js';
 
 const routes = {
     home: `
-        <h2>Welcome to Anki App</h2>
-        <p>Select an option from the menu to get started.</p>
+      <section class="container">
+                <h1>Welcome to Anki App</h1>
+                <h2>Your personal flashcard system</h2>
+            <p>With Anki App, you can:</p>
+            <ul>
+                <li>Create custom flashcards</li>
+                <li>Study your cards using spaced repetition</li>
+                <li>Manage your flashcard collection with ease</li>
+            </ul>
+            <p>Select an option from the menu to get started.</p>
+        </section>
     `,
     study: `
         <h2>Study Cards</h2>
